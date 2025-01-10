@@ -101,7 +101,7 @@ jobs:
       - name: Update image from registry
         working-directory: ${{ needs.build.outputs.path_repo }}
         env:
-          IMAGE: ${{ secrets.REGISTRY_HARBOR }}/${{ env.IMAGE_NAME }}:${{ needs.build.outputs.image_tag }}
+          IMAGE: ${{ needs.build.outputs.image_tag }}
         run: |-
           sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
           sudo chmod +x /usr/bin/yq
