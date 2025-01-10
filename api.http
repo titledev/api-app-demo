@@ -1,7 +1,8 @@
 # TEST ADD
 POST http://localhost:8080/add HTTP/1.1
 content-type: application/json
-
+Headers:
+X-API-Key: TEST_DEV
 {
     "a": 1,
     "b": 2
