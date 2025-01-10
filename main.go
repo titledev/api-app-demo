@@ -60,7 +60,7 @@ func main() {
 		}
 	})
 
-	fmt.Println("Starting server on port 8080")
+	fmt.Println("Starting server on port! 8080")
 	r.Run(":8080")
 }
 
