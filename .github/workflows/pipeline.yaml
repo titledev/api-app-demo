@@ -63,8 +63,8 @@ jobs:
           TAG: ${{ steps.variables.outputs.image_tag }}
         run: |
           echo $PASS_HARBOR | docker login $REGISTRY -u $USER_HARBOR --password-stdin
-          docker build -t $REGISTRY/${{ env.IMAGE_NAME }}:$TAG .  
-          docker push $REGISTRY/${{ env.IMAGE_NAME }}:$TAG
+          docker build -t $REGISTRY/kubernetes-workshop/${{ env.IMAGE_NAME }}:$TAG .  
+          docker push $REGISTRY/kubernetes-workshop/${{ env.IMAGE_NAME }}:$TAG
 
       - name: Retag Rust and Push (Uat & Production)
         if: ${{  startsWith(github.ref, 'refs/tags/')  }}
@@ -75,9 +75,9 @@ jobs:
           TAG: ${{ steps.variables.outputs.image_tag }}
         run: |
           echo $PASS_HARBOR | docker login $REGISTRY -u $USER_HARBOR --password-stdin
-          docker pull $REGISTRY/${{ env.IMAGE_NAME }}:${{ steps.variables.outputs.ref_tag }}
-          docker tag $REGISTRY/${{ env.IMAGE_NAME }}:${{ steps.variables.outputs.ref_tag }} $REGISTRY/${{ env.IMAGE_NAME }}:$TAG
-          docker push $REGISTRY/${{ env.IMAGE_NAME }}:$TAG
+          docker pull $REGISTRY/kubernetes-workshop/${{ env.IMAGE_NAME }}:${{ steps.variables.outputs.ref_tag }}
+          docker tag $REGISTRY/kubernetes-workshop/${{ env.IMAGE_NAME }}:${{ steps.variables.outputs.ref_tag }} $REGISTRY/kubernetes-workshop/${{ env.IMAGE_NAME }}:$TAG
+          docker push $REGISTRY/kubernetes-workshop/${{ env.IMAGE_NAME }}:$TAG
 
   trigger:
     needs: build
