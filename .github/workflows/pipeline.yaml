@@ -11,7 +11,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: kong-api
+  IMAGE_NAME: tle-api
 
 jobs:
   build:
