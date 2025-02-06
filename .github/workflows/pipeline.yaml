@@ -38,8 +38,8 @@ jobs:
           if [[ $GITHUB_REF == "refs/heads/main" ]]; then
             echo "env=uat" >> $GITHUB_OUTPUT
             echo "image_tag=uat-$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_OUTPUT
-            echo "repo=miw1513/k8s-calculator-nonprd" >> $GITHUB_OUTPUT
-            echo "path_repo=k8s-calculator-nonprd" >> $GITHUB_OUTPUT
+            echo "repo=titledev/k8s-app-charts" >> $GITHUB_OUTPUT
+            echo "path_repo=k8s-app-charts" >> $GITHUB_OUTPUT
           elif [[ $GITHUB_EVENT_NAME == "push" && $GITHUB_REF == "refs/tags/"* ]]; then
             echo "image_tag=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
             echo "ref_tag=uat-$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_OUTPUT
@@ -49,8 +49,8 @@ jobs:
           else
             echo "image_tag=dev-$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_OUTPUT
             echo "env=dev" >> $GITHUB_OUTPUT
-            echo "repo=miw1513/k8s-calculator-nonprd" >> $GITHUB_OUTPUT
-            echo "path_repo=k8s-calculator-nonprd" >> $GITHUB_OUTPUT
+            echo "repo=titledev/k8s-app-charts" >> $GITHUB_OUTPUT
+            echo "path_repo=k8s-app-charts" >> $GITHUB_OUTPUT
           fi
 
 
@@ -105,7 +105,7 @@ jobs:
         run: |-
           sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
           sudo chmod +x /usr/bin/yq
-          for file in $(find ./helm-values -type f -name '*.yaml'); do
+          for file in $(find ./values -type f -name '*.yaml'); do
             ENV=$(yq e '.ENV' $file)
             if [ "$ENV" = "${{ needs.build.outputs.env }}" ]; then
               yq e -i '.API.tag = strenv(IMAGE)' $file
