@@ -38,8 +38,8 @@ jobs:
           if [[ $GITHUB_REF == "refs/heads/main" ]]; then
             echo "env=uat" >> $GITHUB_OUTPUT
             echo "image_tag=uat-$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_OUTPUT
-            echo "repo=titledev/k8s-app-demo-nonprod" >> $GITHUB_OUTPUT
-            echo "path_repo=k8s-app-demo-nonprod" >> $GITHUB_OUTPUT
+            echo "repo=titledev/app-nonprod" >> $GITHUB_OUTPUT
+            echo "path_repo=app-nonprod" >> $GITHUB_OUTPUT
           elif [[ $GITHUB_EVENT_NAME == "push" && $GITHUB_REF == "refs/tags/"* ]]; then
             echo "image_tag=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
             echo "ref_tag=uat-$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_OUTPUT
@@ -49,8 +49,8 @@ jobs:
           else
             echo "image_tag=dev-$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_OUTPUT
             echo "env=dev" >> $GITHUB_OUTPUT
-            echo "repo=titledev/k8s-app-demo-nonprod" >> $GITHUB_OUTPUT
-            echo "path_repo=k8s-app-demo-nonprod" >> $GITHUB_OUTPUT
+            echo "repo=titledev/app-nonprod" >> $GITHUB_OUTPUT
+            echo "path_repo=app-nonprod" >> $GITHUB_OUTPUT
           fi
 
 
